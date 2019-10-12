@@ -33,6 +33,7 @@ int main( int argc, char** argv )
     
     // 增量扰动模型的更新
     Eigen::Vector3d update_so3(1e-4, 0, 0); //假设更新量为这么多
+    // cout<<"debug = "<<update_so3<<endl;
     Sophus::SO3 SO3_updated = Sophus::SO3::exp(update_so3)*SO3_R;
     cout<<"SO3 updated = "<<SO3_updated<<endl;
     
@@ -48,7 +49,7 @@ int main( int argc, char** argv )
     typedef Eigen::Matrix<double,6,1> Vector6d;
     Vector6d se3 = SE3_Rt.log();
     cout<<"se3 = "<<se3.transpose()<<endl;
-    // 观察输出，会发现在Sophus中，se(3)的平移在前，旋转在后.
+    // 观察输出，会发现在Sophus中，se(3)的平移在前，旋转在后. 前三个元素是平移  后三个元素是旋转
     // 同样的，有hat和vee两个算符
     cout<<"se3 hat = "<<endl<<Sophus::SE3::hat(se3)<<endl;
     cout<<"se3 hat vee = "<<Sophus::SE3::vee( Sophus::SE3::hat(se3) ).transpose()<<endl;
@@ -56,8 +57,9 @@ int main( int argc, char** argv )
     // 最后，演示一下更新
     Vector6d update_se3; //更新量
     update_se3.setZero();
-    update_se3(0,0) = 1e-4d;
-    Sophus::SE3 SE3_updated = Sophus::SE3::exp(update_se3)*SE3_Rt;
+    update_se3(0,0) = 1e-4;  //这个是向量  不是数组  x平移0.0001
+    // cout<<"debug = "<<update_se3<<endl;
+    Sophus::SE3 SE3_updated = Sophus::SE3::exp(update_se3)*SE3_Rt;//
     cout<<"SE3 updated = "<<endl<<SE3_updated.matrix()<<endl;
     
     return 0;
