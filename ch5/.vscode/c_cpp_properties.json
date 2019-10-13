@@ -5,7 +5,10 @@
             "intelliSenseMode": "gcc-x64",
             "includePath": [
                 "/usr/include/eigen3",
-                "${workspaceFolder}/**"
+                "/home/tianshao/work/slam/opencv",
+                "/usr/include/pcl-1.7/",
+                "${workspaceFolder}/**",
+                "/usr/include/vtk-6.2"
             ],
             "defines": [],
             "browse": {
@@ -16,6 +19,8 @@
                     "${workspaceFolder}/src/platforms",
                     "${workspaceFolder}/platforms/",
                     "/usr/include/eigen3",
+                    "/home/tianshao/work/slam/opencv",
+                    "/usr/include/pcl-1.7/",
                     "."
                 ],
                 "limitSymbolsToIncludedHeaders": true
