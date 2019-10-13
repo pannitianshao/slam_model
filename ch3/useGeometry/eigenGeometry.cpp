@@ -42,18 +42,19 @@ int main ( int argc, char** argv )
     cout<<"(1,0,0) after rotation = "<<v_rotated.transpose()<<endl;   // .transpose()求矩阵的转置
 
     // 欧拉角: 可以将旋转矩阵直接转换成欧拉角
-    cout<<"debug = \n"<<rotation_matrix <<endl;
     // 其中eulerAngles()的三个参数表示旋转顺序。0,1,2分别代表X,Y,Z
     Eigen::Vector3d euler_angles = rotation_matrix.eulerAngles ( 2,1,0 ); //2 1 0 ZYX顺序，即yaw roll pitch顺序
     cout<<"yaw roll pitch = "<<(euler_angles /M_PI * 180).transpose()<<endl; //弧度转化为角度
 
-    // 欧氏变换矩阵使用 Eigen::Isometry
+    // 欧氏变换矩阵使用 Eigen::Isometry 4*4矩阵 
     Eigen::Isometry3d T=Eigen::Isometry3d::Identity();                // 虽然称为3d，实质上是4＊4的矩阵
+    // cout<<"debug = \n"<<T.matrix() <<endl;
     T.rotate ( rotation_vector );                                     // 按照rotation_vector进行旋转
     T.pretranslate ( Eigen::Vector3d ( 1,3,4 ) );                     // 把平移向量设成(1,3,4)
     cout << "Transform matrix = \n" << T.matrix() <<endl;
 
     // 用变换矩阵进行坐标变换
+    // 虽然T是4*4 v是3*1  但是函数库重新定义了*运算符，可以直接相乘
     Eigen::Vector3d v_transformed = T*v;                              // 相当于R*v+t
     cout<<"v tranformed = "<<v_transformed.transpose()<<endl;
 
@@ -67,7 +68,8 @@ int main ( int argc, char** argv )
     q = Eigen::Quaterniond ( rotation_matrix );
     cout<<"quaternion = \n"<<q.coeffs() <<endl;
     // 使用四元数旋转一个向量，使用重载的乘法即可
-    v_rotated = q*v; // 注意数学上是qvq^{-1}
+    v_rotated = q * v;                       // 注意数学上是qvq^{-1}
+    // v_rotated = rotation_matrix * v;      // 旋转矩阵 * 初始向量
     cout<<"(1,0,0) after rotation = "<<v_rotated.transpose()<<endl;
 
     return 0;

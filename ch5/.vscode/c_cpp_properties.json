@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "intelliSenseMode": "gcc-x64",
+            "includePath": [
+                "/usr/include/eigen3",
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/src/",
+                    "${workspaceFolder}/src/lib/",
+                    "${workspaceFolder}/src/lib/matrix",
+                    "${workspaceFolder}/src/platforms",
+                    "${workspaceFolder}/platforms/",
+                    "/usr/include/eigen3",
+                    "."
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "compileCommands": "${workspaceFolder}/.vscode/compile_commands.json",
+            "configurationProvider": "vector-of-bool.cmake-tools"
+        }
+    ],
+    "version": 4
+}
