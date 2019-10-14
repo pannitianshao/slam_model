@@ -7,8 +7,9 @@
                 "/usr/include/eigen3",
                 "/home/tianshao/work/slam/opencv",
                 "/usr/include/pcl-1.7/",
-                "${workspaceFolder}/**",
-                "/usr/include/vtk-6.2"
+                "/usr/include/vtk-6.2",
+
+                "${workspaceFolder}/**"
             ],
             "defines": [],
             "browse": {
@@ -21,6 +22,8 @@
                     "/usr/include/eigen3",
                     "/home/tianshao/work/slam/opencv",
                     "/usr/include/pcl-1.7/",
+
+                    
                     "."
                 ],
                 "limitSymbolsToIncludedHeaders": true
