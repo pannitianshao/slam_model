@@ -8,7 +8,7 @@ using namespace std;
 // 代价函数的计算模型
 struct CURVE_FITTING_COST
 {
-    CURVE_FITTING_COST ( double x, double y ) : _x ( x ), _y ( y ) {}
+    CURVE_FITTING_COST ( double x, double y ) : _x ( x ), _y ( y ) {} 
     // 残差的计算
     template <typename T>
     bool operator() (
